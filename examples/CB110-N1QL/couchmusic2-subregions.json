@@ -1,0 +1,23 @@
+{"region": "Americas", "region-number": 5, "type": "sub-region", "name": "South America"}
+{"region": "Africa", "region-number": 11, "type": "sub-region", "name": "Western Africa"}
+{"region": "Americas", "region-number": 13, "type": "sub-region", "name": "Central America"}
+{"region": "Africa", "region-number": 14, "type": "sub-region", "name": "Eastern Africa"}
+{"region": "Africa", "region-number": 15, "type": "sub-region", "name": "Northern Africa"}
+{"region": "Africa", "region-number": 17, "type": "sub-region", "name": "Middle Africa"}
+{"region": "Africa", "region-number": 18, "type": "sub-region", "name": "Southern Africa"}
+{"region": "Americas", "region-number": 21, "type": "sub-region", "name": "Northern America"}
+{"region": "Americas", "region-number": 29, "type": "sub-region", "name": "Caribbean"}
+{"region": "Asia", "region-number": 30, "type": "sub-region", "name": "Eastern Asia"}
+{"region": "Asia", "region-number": 34, "type": "sub-region", "name": "Southern Asia"}
+{"region": "Asia", "region-number": 35, "type": "sub-region", "name": "South-Eastern Asia"}
+{"region": "Europe", "region-number": 39, "type": "sub-region", "name": "Southern Europe"}
+{"region": "Oceania", "region-number": 53, "type": "sub-region", "name": "Australia and New Zealand"}
+{"region": "Oceania", "region-number": 54, "type": "sub-region", "name": "Melanesia"}
+{"region": "Oceania", "region-number": 57, "type": "sub-region", "name": "Micronesia"}
+{"region": "Oceania", "region-number": 61, "type": "sub-region", "name": "Polynesia"}
+{"region": "Asia", "region-number": 143, "type": "sub-region", "name": "Central Asia"}
+{"region": "Asia", "region-number": 145, "type": "sub-region", "name": "Western Asia"}
+{"region": "Europe", "region-number": 151, "type": "sub-region", "name": "Eastern Europe"}
+{"region": "Europe", "region-number": 154, "type": "sub-region", "name": "Northern Europe"}
+{"region": "Europe", "region-number": 155, "type": "sub-region", "name": "Western Europe"}
+{"region-number": 990, "type": "sub-region"}

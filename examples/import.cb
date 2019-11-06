@@ -1,0 +1,29 @@
+Couchbase backup kubernetes
+——————————————————————————————————————————————————————————————
+kubectl  exec -it couchbase-0 bash -n NAMESPACE
+
+/opt/couchbase/bin/cbbackup couchbase://127.0.0.1:8091 /var/tmp/BUCKETNAME_temp -u admin -p PASSWORD -b BUCKETNAME --mode=full
+
+kubectl cp apollo/couchbase-0:/var/tmp/ ./
+
+docker cp ./BUCKETNAME_temp couchbase:/var/tmp/BUCKETNAME_temp
+docker exec -it couchbase bash
+
+/opt/couchbase/bin/cbrestore /var/tmp/BUCKETNAME_temp couchbase://127.0.0.1:8091 -u LOCAL_USER -p PASSWORD -b BUCKETNAME
+——————————————————————————————————————————————————————————————
+Import from json
+
+docker cp ./ couchbase:/var/tmp/
+docker exec -it couchbase bash
+
+cbimport json -c couchbase://127.0.0.1 -u admin -p admin123 -b couchmusic2 -f lines -d file://couchmusic2-userprofiles.json -t 2 -g %type%::%username%
+cbimport json -c couchbase://127.0.0.1 -u admin -p admin123 -b couchmusic2 -f lines -d file://couchmusic2-playlists.json -t 2 -g %type%::%id%
+cbimport json -c couchbase://127.0.0.1 -u admin -p admin123 -b couchmusic2 -f lines -d file://couchmusic2-subregions.json -t 2 -g %type%::%region-number%
+cbimport json -c couchbase://127.0.0.1 -u admin -p admin123 -b couchmusic2 -f lines -d file://couchmusic2-tracks.json -t 2 -g %type%::%id%
+cbimport json -c couchbase://127.0.0.1 -u admin -p admin123 -b couchmusic2 -f lines -d file://couchmusic2-countries.json -t 2 -g %type%::%countryCode%
+——————————————————————————————————————————————————————————————
+
+CREATE PRIMARY INDEX ON `couchmusic2` USING GSI;
+DROP PRIMARY INDEX ON `couchmusic2` USING GSI;
+
+meta().id LIKE "%userprofile%"
