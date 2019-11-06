@@ -1,0 +1,9 @@
+CREATE INDEX idx_email ON couchmusic2(email);      // Create a secondary index for email attributes in the couchmusic2 bucket.
+
+
+CREATE INDEX idx_state_active ON couchmusic2(address.state) WHERE status = "active";
+
+
+
+CREATE INDEX idx_favoriteGenres ON couchmusic2 ( DISTINCT ARRAY genre FOR genre IN favoriteGenres END) WHERE type = "userprofile";
+//SELECT address.state, email FROM couchmusic2 WHERE type = "userprofile" AND ANY genre IN favoriteGenres SATISFIES genre = "Folk" END;

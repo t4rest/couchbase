@@ -1,0 +1,55 @@
+SELECT * FROM couchmusic2 where field_name IS VALUED;     // has a value
+SELECT * FROM couchmusic2 where field_name IS NOT VALUED; // exist but empty
+SELECT * FROM couchmusic2 where field_name IS MISSING;    // document does not have this field
+SELECT * FROM couchmusic2 where field_name IS NULL;       // document has field {field_name: null}
+
+
+SELECT * FROM couchmusic2 USE KEYS "userprofile::aahingeffeteness42037";
+
+
+SELECT * FROM couchmusic2 USE KEYS ["userprofile::aahingeffeteness42037", "userprofile::aahingheadwaiter24314"];
+
+
+SELECT firstName || " " || lastName AS fullName, email FROM couchmusic2
+USE KEYS ["userprofile::aahingeffeteness42037", "userprofile::aahingheadwaiter24314"];
+
+
+SELECT DISTINCT address.countryCode FROM couchmusic2 WHERE email LIKE "%hotmail.com";
+
+
+SELECT userprofile.firstName, userprofile.lastName, playlist.name, ARRAY_LENGTH(playlist.tracks) AS playlist_length
+FROM couchmusic2 AS userprofile
+JOIN couchmusic2 AS playlist  ON userprofile.username = playlist.owner.username AND userprofile.type = "userprofile"
+WHERE playlist.type = "playlist";
+
+
+SELECT userprofile.firstName, userprofile.lastName, playlist.name, ARRAY_LENGTH(playlist.tracks) AS playlist_length
+FROM couchmusic2 AS userprofile
+JOIN couchmusic2 AS playlist ON userprofile.username = playlist.owner.username AND userprofile.type = "userprofile"
+ AND userprofile.address.state = "oregon"  AND userprofile.status = "active"
+WHERE playlist.type = "playlist" AND ARRAY_LENGTH(playlist.tracks) > 12;
+
+
+CREATE INDEX idx_userprofile_username
+ON couchmusic2(username)
+WHERE type = "userprofile";
+
+CREATE INDEX idx_playlist_username
+ON couchmusic2(owner.username)
+WHERE type = "playlist";
+
+
+
+SELECT u.firstName, u.lastName, u.email, c.name AS countryName
+FROM couchmusic2 AS u USE KEYS "userprofile::abandoninghouseclean34190"
+JOIN couchmusic2 AS c ON KEYS "country::" || u.address.countryCode;
+
+
+SELECT p.owner.username, p.name AS trackname, t.artist, t.title, t.mp3
+FROM couchmusic2 AS p USE KEYS "playlist::00011b74-12be-4e60-abbf-b1c8b9b40bfe"
+JOIN couchmusic2 AS t ON KEYS ARRAY "track::" || trackId FOR trackId IN p.tracks END;
+
+
+SELECT p.owner.username, p.name AS trackname, {"artist": t.artist, "title": t.title, "url": t.mp3 } AS trackdetail
+FROM couchmusic2 AS p USE KEYS "playlist::00011b74-12be-4e60-abbf-b1c8b9b40bfe"
+JOIN couchmusic2 AS t ON KEYS ARRAY "track::" || trackId FOR trackId IN p.tracks END;
